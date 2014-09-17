@@ -226,7 +226,7 @@ int redline13_mapapi_send_map_points(redline13_mapapi_point * points, int num_po
 		len += strlen(points_strs[i]);
 	}
 	
-	// Generate JSON string
+	// Generate JSON string and free individual strings
 	char * points_json_str = (char *)malloc(len);
 	points_json_str[0] = '[';
 	points_json_str[1] = '\0';
@@ -234,6 +234,7 @@ int redline13_mapapi_send_map_points(redline13_mapapi_point * points, int num_po
 	{
 		strcat(points_json_str, points_strs[i]);
 		strcat(points_json_str, ",");
+		free(points_strs[i]);
 	}
 	points_json_str[len-1] = ']';
 	
