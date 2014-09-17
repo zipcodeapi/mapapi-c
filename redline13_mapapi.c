@@ -30,6 +30,9 @@ void redline13_mapapi_init(const char * your_map_id, const char * your_map_key)
 	map_id[REDLINE13_MAPAPI_MAP_ID_LEN] = '\0';
 	strncpy(map_key, your_map_key, REDLINE13_MAPAPI_MAP_KEY_LEN);
 	map_key[REDLINE13_MAPAPI_MAP_KEY_LEN] = '\0';
+	
+	// Set up curl
+	curl_global_init(CURL_GLOBAL_ALL);
 }
 
 /** Set map API endpoint */
