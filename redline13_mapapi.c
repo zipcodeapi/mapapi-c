@@ -283,7 +283,7 @@ char * redline13_mapapi_send_raw_map_data(char * postData)
 	memset(&resp, 0, sizeof(resp));
 	
 	curl_handle = curl_easy_init();
-	if (curl_handle)
+	if (curl_handle != NULL)
 	{
 		curl_easy_setopt(curl_handle, CURLOPT_URL, map_endpoint);
 		curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1);
