@@ -28,6 +28,7 @@ typedef struct redline13_mapapi_point {
 	unsigned int * c;
 	unsigned int * c2;
 	unsigned int delay;
+	unsigned int visible_time;
 } redline13_mapapi_point;
 
 /** Initialize map API */

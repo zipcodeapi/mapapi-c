@@ -181,6 +181,25 @@ static char * convert_point_to_json(redline13_mapapi_point point)
 			}
 		}
 		
+		// visible_time
+		if (point.visible_time != 0)
+		{
+			int tmp = point.visible_time / 10;
+			int digits = 1;
+			while (tmp > 0)
+			{
+				digits++;
+				tmp /= 10;
+			}
+			if (i == 0)
+				min_len += 16 + digits;
+			else
+			{
+				sprintf(str+pos, "\"visible_time\":%d,", point.visible_time);
+				pos += 16 + digits;
+			}
+		}
+		
 		// Close if off
 		if (i == 1)
 		{
