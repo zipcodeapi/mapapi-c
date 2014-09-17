@@ -302,11 +302,11 @@ char * redline13_mapapi_send_raw_map_data(char * postData)
 	// Run
 	curl_easy_perform(curl_handle);
 	
-	// Cleanup
-	curl_easy_cleanup(curl_handle);
-	
 	// Free headers
 	curl_slist_free_all(headers);
+	
+	// Cleanup
+	curl_easy_cleanup(curl_handle);
 	
 	return resp.str;
 }
