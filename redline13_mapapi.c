@@ -283,30 +283,33 @@ char * redline13_mapapi_send_raw_map_data(char * postData)
 	memset(&resp, 0, sizeof(resp));
 	
 	curl_handle = curl_easy_init();
-	curl_easy_setopt(curl_handle, CURLOPT_URL, map_endpoint);
-	curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1);
-	
-	// Set up POST
-	curl_easy_setopt(curl_handle, CURLOPT_POST, 1);
-	curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, postData);
-	struct curl_slist *headers = NULL;
-  headers = curl_slist_append(headers, "Content-Type: application/json");
-	curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, headers);
-	
-	// Set up write function
-	curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, curl_write_callback_func);
-	
-	// Pass data to callbcak
-	curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, &resp);
-	
-	// Run
-	curl_easy_perform(curl_handle);
-	
-	// Free headers
-	curl_slist_free_all(headers);
-	
-	// Cleanup
-	curl_easy_cleanup(curl_handle);
+	if (curl_handle)
+	{
+		curl_easy_setopt(curl_handle, CURLOPT_URL, map_endpoint);
+		curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1);
+		
+		// Set up POST
+		curl_easy_setopt(curl_handle, CURLOPT_POST, 1);
+		curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, postData);
+		struct curl_slist *headers = NULL;
+		headers = curl_slist_append(headers, "Content-Type: application/json");
+		curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, headers);
+		
+		// Set up write function
+		curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, curl_write_callback_func);
+		
+		// Pass data to callbcak
+		curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, &resp);
+		
+		// Run
+		curl_easy_perform(curl_handle);
+		
+		// Free headers
+		curl_slist_free_all(headers);
+		
+		// Cleanup
+		curl_easy_cleanup(curl_handle);
+	}
 	
 	return resp.str;
 }
