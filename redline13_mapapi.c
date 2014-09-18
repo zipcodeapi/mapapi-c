@@ -222,7 +222,7 @@ int redline13_mapapi_send_map_points(redline13_mapapi_point * points, int num_po
 	// Generate point strings
 	char ** points_strs = (char **)malloc(num_points*sizeof(char *));
 	int i = 0;
-	int len = num_points + 1; // '[', num_points - 1 commas, and ']'
+	int len = num_points + 2; // '[', num_points - 1 commas, and ']' plus '\0'
 	for (; i < num_points; i++)
 	{
 		points_strs[i] = convert_point_to_json(points[i]);
@@ -239,7 +239,7 @@ int redline13_mapapi_send_map_points(redline13_mapapi_point * points, int num_po
 		strcat(points_json_str, ",");
 		free(points_strs[i]);
 	}
-	points_json_str[len-1] = ']';
+	points_json_str[len-2] = ']';
 	
 	// Free points strings
 	free(points_strs);
