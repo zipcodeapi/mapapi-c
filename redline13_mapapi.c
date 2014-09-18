@@ -288,6 +288,12 @@ char * redline13_mapapi_send_raw_map_data(char * postData)
 		curl_easy_setopt(curl_handle, CURLOPT_URL, map_endpoint);
 		curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1);
 		
+		// Unfortunately, this seems to have a memory leak, so turn it off
+		curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
+		
+		// See http://curl.haxx.se/libcurl/c/libcurl-tutorial.html#Multi-threading
+		curl_easy_setopt(curl_handle, CURLOPT_NOSIGNAL, 1);
+		
 		// Set up POST
 		curl_easy_setopt(curl_handle, CURLOPT_POST, 1);
 		curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, postData);
