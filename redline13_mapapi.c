@@ -13,7 +13,7 @@
 
 // API endpoint
 #define REDLINE13_MAPAPI_ENDPOINT_MAX_LEN 1024
-static char map_endpoint[REDLINE13_MAPAPI_ENDPOINT_MAX_LEN] = "https://realtimemapapi.redline13.com:4434";
+static char map_endpoint[REDLINE13_MAPAPI_ENDPOINT_MAX_LEN] = "https://realtimemapapi.com:4434";
 
 // Map id and key lengths
 #define REDLINE13_MAPAPI_MAP_ID_LEN 8
