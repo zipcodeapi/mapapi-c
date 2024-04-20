@@ -1,4 +1,4 @@
 mapapi-c
 ========
 
-C client for RedLine13 Real-Time Map API: https://realtimemapapi.com
+C client for ZipCodeAPI Real-Time Map API: https://realtimemapapi.com
